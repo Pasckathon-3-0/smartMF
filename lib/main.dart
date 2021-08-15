@@ -1,5 +1,9 @@
 import 'package:emf_app/home.dart';
+import 'package:emf_app/models/magnitudeProvider.dart';
+import 'package:emf_app/models/startProvider.dart';
+import 'package:emf_app/widgets/radialChart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(new MyApp());
@@ -10,10 +14,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(brightness: Brightness.dark, fontFamily: 'DMSans'),
-      home: Home(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MagnitudeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => StartProvider(),
+        ),
+      ],
+      child: MaterialApp(
+          theme: ThemeData(fontFamily: 'DMSans', brightness: Brightness.dark),
+          debugShowCheckedModeBanner: false,
+          home: ScatterChartPage()),
     );
   }
 }
