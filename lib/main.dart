@@ -1,7 +1,5 @@
 import 'package:emf_app/home.dart';
 import 'package:emf_app/models/magnitudeProvider.dart';
-import 'package:emf_app/models/startProvider.dart';
-import 'package:emf_app/widgets/radialChart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,14 +17,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => MagnitudeProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => StartProvider(),
-        ),
       ],
       child: MaterialApp(
           theme: ThemeData(fontFamily: 'DMSans', brightness: Brightness.dark),
           debugShowCheckedModeBanner: false,
-          home: ScatterChartPage()),
+          home: Home()),
     );
   }
 }

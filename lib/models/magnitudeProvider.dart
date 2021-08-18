@@ -8,8 +8,9 @@ class MagnitudeProvider extends ChangeNotifier {
   double x = 0;
   double y = 0;
   double z = 0;
-
   double magnitude = 0;
+  int time = 0;
+  List<LiveData> values = [];
 
   Vector3 magnetometer = Vector3.zero();
   Vector3 _accelerometer = Vector3.zero();
@@ -28,6 +29,8 @@ class MagnitudeProvider extends ChangeNotifier {
       magnitude = sqrt((pow(magnetometer.x, 2)) +
           (pow(magnetometer.y, 2)) +
           (pow(magnetometer.z, 2)));
+      values.add(LiveData(x, y, z, time++));
+      // print(values);
       notifyListeners();
     });
   }
@@ -37,4 +40,12 @@ class MagnitudeProvider extends ChangeNotifier {
     groupValue = groupValue;
     notifyListeners();
   }
+}
+
+class LiveData {
+  LiveData(this.x, this.y, this.z, this.time);
+  final double x;
+  final double y;
+  final double z;
+  final int time;
 }

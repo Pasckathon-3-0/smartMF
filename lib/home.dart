@@ -1,10 +1,11 @@
 import 'package:emf_app/models/magnitudeProvider.dart';
+import 'package:emf_app/pages/visuals.dart';
 import 'package:emf_app/utils/colors.dart';
 import 'package:emf_app/widgets/mainReading.dart';
 import 'package:emf_app/widgets/meterReading.dart';
-import 'package:emf_app/widgets/startButton.dart';
 import 'package:emf_app/widgets/xyzReading.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -26,6 +27,25 @@ class _HomeState extends State<Home> {
             MainReading(),
             XYZReading(),
             MeterReading(),
+            Container(
+              width: 120,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Visuals()));
+                  },
+                  child: Text('Visualize')),
+            ),
+            Consumer<MagnitudeProvider>(
+              builder: (context, model, child) => Container(
+                width: 120,
+                child: ElevatedButton(
+                    onPressed: () {
+                      model.changeValues();
+                    },
+                    child: Text('Start')),
+              ),
+            ),
             // StartButton()
           ],
         ),
