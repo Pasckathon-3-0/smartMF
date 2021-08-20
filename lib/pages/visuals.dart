@@ -28,31 +28,66 @@ class _VisualsState extends State<Visuals> {
       body: Container(
         child: Column(children: [
           Container(
-              height: 300,
-              color: Colors.grey.shade800,
-              child: Consumer<MagnitudeProvider>(
-                builder: (context, model, child) => SfCartesianChart(
-                    series: <LineSeries<LiveData, int>>[
-                      LineSeries<LiveData, int>(
-                        onRendererCreated: (ChartSeriesController controller) {
-                          _chartSeriesController = controller;
-                        },
-                        dataSource: model.values,
-                        color: const Color.fromRGBO(192, 108, 132, 1),
-                        xValueMapper: (LiveData value, _) => value.time,
-                        yValueMapper: (LiveData value, _) => value.x,
-                      )
-                    ],
-                    primaryXAxis: NumericAxis(
-                        majorGridLines: const MajorGridLines(width: 0),
-                        edgeLabelPlacement: EdgeLabelPlacement.shift,
-                        interval: 3,
-                        title: AxisTitle(text: 'Time (seconds)')),
-                    primaryYAxis: NumericAxis(
-                        axisLine: const AxisLine(width: 0),
-                        majorTickLines: const MajorTickLines(size: 0),
-                        title: AxisTitle(text: 'Internet speed (Mbps)'))),
-              ))
+            margin: EdgeInsets.all(5),
+            child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: Consumer<MagnitudeProvider>(
+                  builder: (context, model, child) => SfCartesianChart(
+                      title: ChartTitle(text: 'x,y,z with Time'),
+                      legend: Legend(
+                        isVisible: true,
+                        title: LegendTitle(text: 'Legend'),
+                      ),
+                      series: <LineSeries<LiveData, int>>[
+                        //x
+                        LineSeries<LiveData, int>(
+                          legendItemText: 'x',
+                          onRendererCreated:
+                              (ChartSeriesController controller) {
+                            _chartSeriesController = controller;
+                          },
+                          dataSource: model.values,
+                          color: Colors.red,
+                          xValueMapper: (LiveData value, _) => value.time,
+                          yValueMapper: (LiveData value, _) => value.x,
+                        ),
+                        //y
+                        LineSeries<LiveData, int>(
+                          legendItemText: 'y',
+                          onRendererCreated:
+                              (ChartSeriesController controller) {
+                            _chartSeriesController = controller;
+                          },
+                          dataSource: model.values,
+                          color: Colors.blue,
+                          xValueMapper: (LiveData value, _) => value.time,
+                          yValueMapper: (LiveData value, _) => value.y,
+                        ),
+                        //z
+                        LineSeries<LiveData, int>(
+                          legendItemText: 'z',
+                          onRendererCreated:
+                              (ChartSeriesController controller) {
+                            _chartSeriesController = controller;
+                          },
+                          dataSource: model.values,
+                          color: Colors.green,
+                          xValueMapper: (LiveData value, _) => value.time,
+                          yValueMapper: (LiveData value, _) => value.z,
+                        ),
+                      ],
+                      primaryXAxis: NumericAxis(
+                          majorGridLines: const MajorGridLines(width: 0),
+                          edgeLabelPlacement: EdgeLabelPlacement.shift,
+                          interval: 3,
+                          title: AxisTitle(text: 'Time')),
+                      primaryYAxis: NumericAxis(
+                          axisLine: const AxisLine(width: 0),
+                          majorTickLines: const MajorTickLines(size: 0),
+                          title: AxisTitle(text: 'uTesla'))),
+                )),
+          )
         ]),
       ),
     );
