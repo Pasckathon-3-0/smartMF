@@ -27,7 +27,6 @@ dependencies:
   provider:
   vector_math:
   syncfusion_flutter_gauges:
-  fl_chart:
   syncfusion_flutter_charts:
 
 

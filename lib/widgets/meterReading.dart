@@ -22,13 +22,13 @@ class _MeterReadingState extends State<MeterReading> {
           builder: (context, model, child) => SfRadialGauge(axes: <RadialAxis>[
             RadialAxis(
                 minimum: 0,
-                maximum: 150,
+                maximum: 1000,
                 labelOffset: 20,
                 tickOffset: 20,
                 ranges: <GaugeRange>[
                   GaugeRange(
                     startValue: 0,
-                    endValue: 50,
+                    endValue: 200,
                     color: AppColors.green,
                     label: 'SAFE',
                     startWidth: 25,
@@ -37,8 +37,8 @@ class _MeterReadingState extends State<MeterReading> {
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   GaugeRange(
-                    startValue: 50,
-                    endValue: 100,
+                    startValue: 200,
+                    endValue: 500,
                     color: AppColors.orange,
                     label: 'MODERATE',
                     startWidth: 25,
@@ -47,8 +47,8 @@ class _MeterReadingState extends State<MeterReading> {
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   GaugeRange(
-                    startValue: 100,
-                    endValue: 150,
+                    startValue: 500,
+                    endValue: 1000,
                     color: AppColors.red,
                     label: 'DANGER',
                     startWidth: 25,

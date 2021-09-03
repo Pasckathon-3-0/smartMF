@@ -20,34 +20,15 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            MainReading(),
-            XYZReading(),
-            MeterReading(),
-            Container(
-              width: 200,
-              height: 50,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          side: BorderSide(color: Colors.white))),
-                      backgroundColor:
-                          MaterialStateProperty.all(AppColors.primaryColor)),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Visuals()));
-                  },
-                  child: Text('Visualize')),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Consumer<MagnitudeProvider>(
-              builder: (context, model, child) => Container(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              MainReading(),
+              XYZReading(),
+              MeterReading(),
+              Container(
                 width: 200,
                 height: 50,
                 child: ElevatedButton(
@@ -58,14 +39,36 @@ class _HomeState extends State<Home> {
                         backgroundColor:
                             MaterialStateProperty.all(AppColors.primaryColor)),
                     onPressed: () {
-                      model.changeValues();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Visuals()));
                     },
-                    child: Text('Start')),
+                    child: Text('Visualize')),
               ),
-            ),
+              SizedBox(
+                height: 10,
+              ),
+              Consumer<MagnitudeProvider>(
+                builder: (context, model, child) => Container(
+                  width: 200,
+                  height: 50,
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                  side: BorderSide(color: Colors.white))),
+                          backgroundColor: MaterialStateProperty.all(
+                              AppColors.primaryColor)),
+                      onPressed: () {
+                        model.changeValues();
+                      },
+                      child: Text('Start')),
+                ),
+              ),
 
-            // StartButton()
-          ],
+              // StartButton()
+            ],
+          ),
         ),
       ),
     );

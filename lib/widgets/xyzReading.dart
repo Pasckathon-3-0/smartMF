@@ -22,27 +22,24 @@ class _XYZReadingState extends State<XYZReading> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Radio(
-                activeColor: Colors.deepPurple,
                 value: 1,
-                groupValue: model.groupValue,
+                groupValue: model.groupvalue,
                 onChanged: (dynamic value) => model.setUpdateInterval(
-                    value, Duration.microsecondsPerSecond ~/ 1),
+                    1, Duration.microsecondsPerSecond ~/ 1),
               ),
               Text("1 FPS"),
               Radio(
-                activeColor: Colors.deepPurple,
                 value: 2,
-                groupValue: model.groupValue,
+                groupValue: model.groupvalue,
                 onChanged: (dynamic value) => model.setUpdateInterval(
-                    value, Duration.microsecondsPerSecond ~/ 30),
+                    2, Duration.microsecondsPerSecond ~/ 30),
               ),
               Text("30 FPS"),
               Radio(
-                activeColor: Colors.deepPurple,
                 value: 3,
-                groupValue: model.groupValue,
+                groupValue: model.groupvalue,
                 onChanged: (dynamic value) => model.setUpdateInterval(
-                    value, Duration.microsecondsPerSecond ~/ 60),
+                    3, Duration.microsecondsPerSecond ~/ 60),
               ),
               Text("60 FPS"),
             ],

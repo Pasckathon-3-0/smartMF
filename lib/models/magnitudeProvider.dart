@@ -15,7 +15,7 @@ class MagnitudeProvider extends ChangeNotifier {
   Vector3 magnetometer = Vector3.zero();
   Vector3 _accelerometer = Vector3.zero();
   Vector3 _absoluteOrientation2 = Vector3.zero();
-  int? groupValue = 0;
+  int? groupvalue = 2;
 
   changeValues() {
     motionSensors.magnetometer.listen((MagnetometerEvent event) {
@@ -30,6 +30,10 @@ class MagnitudeProvider extends ChangeNotifier {
           (pow(magnetometer.y, 2)) +
           (pow(magnetometer.z, 2)));
       values.add(LiveData(x, y, z, time++));
+      if (values.length > 40) {
+        values.removeAt(0);
+      }
+
       // print(values);
       notifyListeners();
     });
@@ -37,7 +41,8 @@ class MagnitudeProvider extends ChangeNotifier {
 
   setUpdateInterval(int? groupValue, int interval) {
     motionSensors.magnetometerUpdateInterval = interval;
-    groupValue = groupValue;
+    groupvalue = groupValue;
+    print(groupvalue);
     notifyListeners();
   }
 }
