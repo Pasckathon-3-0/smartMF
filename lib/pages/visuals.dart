@@ -83,6 +83,7 @@ class _VisualsState extends State<Visuals> {
                           ),
                         ],
                         primaryXAxis: NumericAxis(
+                            isVisible: false,
                             majorGridLines: const MajorGridLines(width: 0),
                             edgeLabelPlacement: EdgeLabelPlacement.shift,
                             interval: 3,
