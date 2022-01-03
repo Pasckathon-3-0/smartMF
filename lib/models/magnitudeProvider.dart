@@ -30,9 +30,9 @@ class MagnitudeProvider extends ChangeNotifier {
           (pow(magnetometer.y, 2)) +
           (pow(magnetometer.z, 2)));
       values.add(LiveData(x, y, z, time++));
-      if (values.length > 40) {
-        values.removeAt(0);
-      }
+      // if (values.length > 40) {
+      //   values.removeAt(0);
+      // }
 
       // print(values);
       notifyListeners();

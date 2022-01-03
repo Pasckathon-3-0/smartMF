@@ -57,6 +57,7 @@ class _VisualsState extends State<Visuals> {
                             xValueMapper: (LiveData value, _) => value.time,
                             yValueMapper: (LiveData value, _) => value.x,
                           ),
+
                           //y
                           LineSeries<LiveData, int>(
                             legendItemText: 'y',
@@ -69,6 +70,7 @@ class _VisualsState extends State<Visuals> {
                             xValueMapper: (LiveData value, _) => value.time,
                             yValueMapper: (LiveData value, _) => value.y,
                           ),
+
                           //z
                           LineSeries<LiveData, int>(
                             legendItemText: 'z',
@@ -83,7 +85,7 @@ class _VisualsState extends State<Visuals> {
                           ),
                         ],
                         primaryXAxis: NumericAxis(
-                            isVisible: false,
+                            isVisible: true,
                             majorGridLines: const MajorGridLines(width: 0),
                             edgeLabelPlacement: EdgeLabelPlacement.shift,
                             interval: 3,
